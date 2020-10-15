@@ -25,21 +25,23 @@ namespace estudando_c_
 
             double angulo = 0;
 
-            while ((angulo <= 0 ) || (angulo > 90)) {
+            while ((angulo <= 0 || angulo > 90)) {
                 Console.WriteLine("Informe o angulo de inclinação do canhão entre 0 e 90 graus! Ex: (30, 50))");
-                angulo = Math.Atan(Convert.ToInt32(Console.ReadLine()));
-                if ((angulo <= 0) || (angulo > 90)) {   
+                angulo = (Convert.ToInt32(Console.ReadLine()));
+                if ((angulo <= 0 || angulo > 90)) {   
                     Console.WriteLine("Informe novamente o angulo do disparo! (entre 0 e 90 graus)");
                 };
-            };                                        
-                                      
+            };      
+
+            var anguloRadianos = (angulo*Math.PI) / (180) ;                              
+                                     
             var aceleracao = 9.81;
 
             // formulas altura máxima, tempo de trajeto e alcance horizonal
 
-            var alturaMaxima = (Math.Pow(velocidadeInicial, 2) * Math.Pow(Math.Sin(angulo), 2)) / (2 * aceleracao);
-            var tempoTrajeto = (2 * velocidadeInicial * Math.Sin(angulo)) / aceleracao; 
-            var alcanceHorizontal = (2 * Math.Pow(velocidadeInicial, 2)) * ((Math.Cos(angulo) * Math.Sin(angulo)) / aceleracao);
+            var alturaMaxima = (Math.Pow(velocidadeInicial, 2) * Math.Pow(Math.Sin(anguloRadianos), 2)) / (2 * aceleracao);
+            var tempoTrajeto = (2 * velocidadeInicial * Math.Sin(anguloRadianos)) / aceleracao; 
+            var alcanceHorizontal = (2 * Math.Pow(velocidadeInicial, 2)) * ((Math.Cos(anguloRadianos) * Math.Sin(anguloRadianos)) / aceleracao);
     
             // distancia do alvo!
 
@@ -57,13 +59,13 @@ namespace estudando_c_
 
             long tamanhoAlvo = 0;
             
-            while ((tamanhoAlvo < 20) || (tamanhoAlvo > 50)) {
-                Console.WriteLine("Informe o tamanho do seu alvo, sendo maior que 20 e menor que 50 metros!");
+            while ((tamanhoAlvo < 20 || tamanhoAlvo > 50)) {
+                Console.WriteLine("Informe o tamanho do seu alvo, sendo o valor igual ou maior que 20, e igual ou menor que 50!");
                 tamanhoAlvo = Convert.ToInt64(Console.ReadLine());
                 if ((tamanhoAlvo < 20) || (tamanhoAlvo > 50)) {
                     Console.WriteLine("Informe um valor maior que 20 e menor que 50!");
                 };
-            }
+            };
 
             var alvoFinal = (distanciaAlvo + tamanhoAlvo);
 
@@ -72,6 +74,7 @@ namespace estudando_c_
             Console.WriteLine("A altura máxima do projétil foi de: " + alturaMaxima);
             Console.WriteLine("O tempo do trajeto do projétil foi de: " + tempoTrajeto);
             Console.WriteLine("O alcance horizontal do projétil foi de: " + alcanceHorizontal);
+            Console.WriteLine("O alvo está à " + distanciaAlvo + " metros do canhão, com tamanho de " + tamanhoAlvo + " metros!");
 
             if (alcanceHorizontal > alvoFinal) { 
                 Console.WriteLine ("O projétil caiu depois do alvo!");
