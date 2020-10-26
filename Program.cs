@@ -6,14 +6,20 @@ namespace estudando_c_
     {
         static void Main(string[] args)
         {   
-            var soma = 0;            
-            for (int i = 1; i < 21; i++){
-                if(i % 3 == 0) {
-                    soma = soma + i;
-                };
-            };
+            Console.WriteLine("Olá, Somos da ViTintas");
+            Console.WriteLine("Nesse programa, voce irá descobrir saber a quantidade de tintas e seu valor para pintar a sua residência");
+            Console.WriteLine("Quantos metros quadrados de parede você deseja pintar em sua residência?");
+            var metrosQuadrados = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine($"A soma é de {soma}");
+            
+            var lataTinta = 18;
+            var valorTinta = 80;
+            var quantidadeLitros = metrosQuadrados / 3;
+            var quantidadeTinta = quantidadeLitros / lataTinta;
+
+            var valorFinal = quantidadeTinta * valorTinta;
+
+            Console.WriteLine($"Você deverá comprar {quantidadeTinta} latas de tinta, sendo o valor total de R${valorFinal}!");
         }
     }                                    
 }
