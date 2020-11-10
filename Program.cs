@@ -5,8 +5,10 @@ namespace estudando_c_
 {
     class Program
     {
-        static void Main(string[] args)
-        {   
+
+        static List<string> nomesDosConvidados = new List<string>();
+        static List<int> telefoneDosConvidados = new List<int>();
+        static void Main(string[] args) {   
             var nomeDoUsuario = Introdução();            
             Menu(nomeDoUsuario);                                
         }
@@ -20,7 +22,8 @@ namespace estudando_c_
             return nomeDoUsuario;           
         }
 
-        static void Menu(string nomeDoUsuario) {                                    
+        static void Menu(string nomeDoUsuario) {     
+                                                       
             Console.WriteLine($"Olá {nomeDoUsuario}, Selecione uma das opções para continuar");
             Console.WriteLine("1 - Adicionar Convidado.");
             Console.WriteLine("2 - Remover Convidado.");
@@ -28,12 +31,10 @@ namespace estudando_c_
             Console.WriteLine("4 - Listar Convidados pré-cadastrados.");
             Console.WriteLine("5 - Acessar informações de seus convidado.");
             Console.WriteLine("6 - Fechar o Programa.");
-            int MenuListaDeConvidados = Convert.ToInt32(Console.ReadLine());    
-
-            var nomesDosConvidados = new List<string>();
-            var telefoneDosConvidados = new List<int>();                              
-        
-            switch (MenuListaDeConvidados) {
+            int MenuListaDeConvidados = Convert.ToInt32(Console.ReadLine()); 
+            Console.Clear(); 
+                                         
+                    switch (MenuListaDeConvidados) {
                 case 1:
                     AdicionarConvidados(nomesDosConvidados, telefoneDosConvidados);                                          
                     break;
@@ -62,9 +63,8 @@ namespace estudando_c_
                     Console.Write("Você não digitou nenhum dos parãmetros corretamente.");
                     Console.ReadKey();
                     break;                               
-            }    
-
-            Console.Clear();
+            }   
+            
             Menu(nomeDoUsuario);                               
         }
 
@@ -95,16 +95,20 @@ namespace estudando_c_
             nomesDosConvidados.Remove(Console.ReadLine());
             
             Console.WriteLine("Deseja remover mais algum convidado? (s/N)");
+            ContinuarBloco = Console.ReadLine();
             }
         }
-       
+        
         // EditarConvidados();   
 
         static void ListarConvidados(List<string> nomesDosConvidados) {
             Console.WriteLine("Essas são as pessoas convidadas para a sua festa: ");
             foreach(string nomeDoConvidado in nomesDosConvidados)  {
-               Console.WriteLine($"{nomeDoConvidado}"); 
+               Console.WriteLine($"{nomeDoConvidado}");                
             };
+            Console.WriteLine("Digite qualquer tecla para continuar");
+            Console.ReadKey();
+            Console.Clear();
         }
         
         //AcessarInfoDosConvidados
