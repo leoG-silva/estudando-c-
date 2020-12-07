@@ -44,7 +44,7 @@ namespace estudando_c_
                     break;
 
                 case 3:
-                    // EditarConvidados();
+                    EditarConvidados(nomesDosConvidados, telefoneDosConvidados);
                     break;
 
                 case 4:
@@ -52,7 +52,7 @@ namespace estudando_c_
                     break;
 
                 case 5:
-                    // AcessarInfoDosConvidados();
+                    AcessarInfoDosConvidados(nomesDosConvidados, telefoneDosConvidados);
                     break;
 
                 case 6:
@@ -60,16 +60,14 @@ namespace estudando_c_
                     break; 
 
                 default:
-                    Console.Write("Você não digitou nenhum dos parãmetros corretamente.");
+                    Console.Write("Você digitou nenhum dos parãmetros corretamente.");
                     Console.ReadKey();
                     break;                               
             }   
             
             Menu(nomeDoUsuario);                               
         }
-
-        static void MenuPrograma (string nomeDoUsuario) {}
-
+        
         static void AdicionarConvidados(List<string> nomesDosConvidados, List<int> telefoneDosConvidados) {
             var ContinuarBloco = "s";               
                                    
@@ -89,17 +87,53 @@ namespace estudando_c_
 
         static void RemoverConvidados(List<string> nomesDosConvidados) {
             var ContinuarBloco = "s";
-
+            
             while (ContinuarBloco == "s" || ContinuarBloco == "S") {
             Console.WriteLine("Informe o nome de um convidado a ser retirado da lista de sua festa!");
-            nomesDosConvidados.Remove(Console.ReadLine());
+            var ConvidadoASerRemovido = Console.ReadLine();             
             
+            var PosicaoConvidado = nomesDosConvidados.FindIndex(nomeConvidado => nomeConvidado == ConvidadoASerRemovido);
+            nomesDosConvidados.RemoveAt(PosicaoConvidado);
+            telefoneDosConvidados.RemoveAt(PosicaoConvidado);
+
             Console.WriteLine("Deseja remover mais algum convidado? (s/N)");
             ContinuarBloco = Console.ReadLine();
             }
+
+                Console.Clear();
+
         }
         
-        // EditarConvidados();   
+        static void EditarConvidados(List<string> nomesDosConvidados, List<int> telefoneDosConvidados) {
+            var ContinuarBloco = "s";
+            
+            while (ContinuarBloco == "s" || ContinuarBloco == "S") {
+                Console.WriteLine("Informe o nome do convidado a ser editado!");
+                var ConvidadoASerEditado = Console.ReadLine();
+
+                var PosicaoConvidado = nomesDosConvidados.FindIndex(nomeConvidado => nomeConvidado == ConvidadoASerEditado);
+
+                Console.WriteLine("Você deseja editar o nome ou telefone?"); 
+                var EdicaoDoConvidado = Console.ReadLine();
+
+                if (EdicaoDoConvidado == "Nome" || EdicaoDoConvidado == "nome") {
+                    Console.WriteLine("Digite o novo nome!");
+                    var NovoNome = Console.ReadLine();
+                    nomesDosConvidados[PosicaoConvidado] = NovoNome;                 
+
+                } if (EdicaoDoConvidado == "Telefone" || EdicaoDoConvidado == "telefone") {
+                    Console.WriteLine("Digite o novo telefone!");
+                    var NovoTelefone = Console.ReadLine();
+                    telefoneDosConvidados[PosicaoConvidado] = Convert.ToInt32(NovoTelefone);
+                }
+
+                Console.WriteLine("Deseja editar mais algum convidado? (s/N)");
+                ContinuarBloco = Console.ReadLine();
+            }
+
+            Console.Clear();
+
+        }   
 
         static void ListarConvidados(List<string> nomesDosConvidados) {
             Console.WriteLine("Essas são as pessoas convidadas para a sua festa: ");
@@ -111,7 +145,28 @@ namespace estudando_c_
             Console.Clear();
         }
         
-        //AcessarInfoDosConvidados
+        static void AcessarInfoDosConvidados(List<string> nomesDosConvidados, List<int> telefoneDosConvidados) {
+            Console.WriteLine("Essas são as pessoas convidadas para a sua festa: ");
+            foreach(string nomeDoConvidado in nomesDosConvidados) {
+                Console.WriteLine($"{nomeDoConvidado}");
+            }
+                        
+            var ContinuarBloco = "s";
+            
+            while (ContinuarBloco == "s" || ContinuarBloco == "S") {
+                Console.WriteLine("Qual convidado você deseja acessar a informação do telefone?");
+                var InformacaoDoConvidado = Console.ReadLine();
+
+                var PosicaoConvidado = nomesDosConvidados.FindIndex(nomeConvidado => nomeConvidado == InformacaoDoConvidado);
+                Console.WriteLine($"O telefone do(a) {nomesDosConvidados[PosicaoConvidado]} é {telefoneDosConvidados[PosicaoConvidado]}");
+                
+                Console.WriteLine("Deseja verificar mais algum convidado? (s/N)");
+                ContinuarBloco = Console.ReadLine();                
+            }
+
+            Console.Clear();
+
+        }
 
         static void FinalizarPrograma() {
             Console.WriteLine("Aperte qualquer tecla para finalizar o seu programa");
