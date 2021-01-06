@@ -11,3 +11,16 @@ C:\Users\Leonardo\repos\estudando-c-\obj\Debug\netcoreapp3.1\estudando-c-.csproj
 C:\Users\Leonardo\repos\estudando-c-\obj\Debug\netcoreapp3.1\estudando-c-.dll
 C:\Users\Leonardo\repos\estudando-c-\obj\Debug\netcoreapp3.1\estudando-c-.pdb
 C:\Users\Leonardo\repos\estudando-c-\obj\Debug\netcoreapp3.1\estudando-c-.genruntimeconfig.cache
+E:\repos\ensinando-csharp\bin\Debug\netcoreapp3.1\estudando-c-.exe
+E:\repos\ensinando-csharp\bin\Debug\netcoreapp3.1\estudando-c-.deps.json
+E:\repos\ensinando-csharp\bin\Debug\netcoreapp3.1\estudando-c-.runtimeconfig.json
+E:\repos\ensinando-csharp\bin\Debug\netcoreapp3.1\estudando-c-.runtimeconfig.dev.json
+E:\repos\ensinando-csharp\bin\Debug\netcoreapp3.1\estudando-c-.dll
+E:\repos\ensinando-csharp\bin\Debug\netcoreapp3.1\estudando-c-.pdb
+E:\repos\ensinando-csharp\obj\Debug\netcoreapp3.1\estudando-c-.csprojAssemblyReference.cache
+E:\repos\ensinando-csharp\obj\Debug\netcoreapp3.1\estudando-c-.AssemblyInfoInputs.cache
+E:\repos\ensinando-csharp\obj\Debug\netcoreapp3.1\estudando-c-.AssemblyInfo.cs
+E:\repos\ensinando-csharp\obj\Debug\netcoreapp3.1\estudando-c-.csproj.CoreCompileInputs.cache
+E:\repos\ensinando-csharp\obj\Debug\netcoreapp3.1\estudando-c-.dll
+E:\repos\ensinando-csharp\obj\Debug\netcoreapp3.1\estudando-c-.pdb
+E:\repos\ensinando-csharp\obj\Debug\netcoreapp3.1\estudando-c-.genruntimeconfig.cache
