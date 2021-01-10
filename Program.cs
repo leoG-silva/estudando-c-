@@ -9,11 +9,9 @@ namespace estudando_c_
   {
     private static Pessoa pessoa;
     private static string nomeUsuario;
-    private static DateTime dataNascimento;
-            
+                
     static void Main(string[] args)
-    { 
-      pessoa = new Pessoa();
+    {       
       Introducao();
       Menu();       
       ImprimirDados();
@@ -23,29 +21,24 @@ namespace estudando_c_
     {
       Console.WriteLine("Olá, seja bem vindo ao Exercício número 1!");
       Console.WriteLine("Primeiramente, digite seu nome completo.");
-      var nomeUsuario = Console.ReadLine();
-      var nome = nomeUsuario;
+      nomeUsuario = Console.ReadLine();     
     }
 
     static void Menu()
     {
-      Console.WriteLine($"Olá {nomeUsuario}, digite agora as informações solicitadas.");
-      Console.WriteLine("Primeiro, digite a data do seu nascimento no formato MM/DD/AAAA. (EX: 05/20/1997)");
-      var dataNascimento = DateTime.Parse(Console.ReadLine());
-      Console.WriteLine("Agora digite a sua altura. (EX: 1.63)");
-      var altura = Console.ReadLine();
       
-      CalcularIdade();
-    }
-    
-    static void CalcularIdade()
-    {
-      var idade = DateTime.Today.Year - dataNascimento.Year; 
-    }
+      Console.WriteLine($"Olá {nomeUsuario}, digite agora as informações solicitadas.");
+      Console.WriteLine("Primeiro, digite a data do seu nascimento no formato DD/MM/AAAA. (EX: 05/05/1997)");
+      var dataNascimento = Convert.ToDateTime(Console.ReadLine());
+      Console.WriteLine("Agora digite a sua altura. (EX: 1.63)");
+      var altura = Convert.ToDouble(Console.ReadLine());
 
+      pessoa = new Pessoa(nomeUsuario, altura, dataNascimento);            
+    }
+        
     static void ImprimirDados()
     { 
-      Console.WriteLine($"Seu nome completo é {Pessoa.Nome}, você nasceu em {Pessoa.DataNascimento} ({idade} anos), e possui {altura} de altura!");
+      Console.WriteLine(pessoa.ImprimirDados());
       Console.WriteLine("Clique para finalizar o programa.");
       Console.ReadKey();
     }

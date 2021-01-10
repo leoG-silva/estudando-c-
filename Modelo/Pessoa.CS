@@ -4,17 +4,25 @@ namespace estudando_c_.Modelo
 {
   public class Pessoa
   {
-    internal object nomeUsuario;
+    private string _nome { get; }
+    private double _altura { get; }
+    private DateTime _dataNascimento { get; }
 
-    private string _nome { get; set; }
-    private double _altura { get; set; }
-    private DateTime _dataNascimento { get; set; }
+    public Pessoa(string nome, double altura, DateTime dataNascimento) 
+    { 
+        _nome = nome;
+        _altura = altura;
+        _dataNascimento = dataNascimento;
+    }
 
-    public string Nome(string nome) => _nome = nome;
-
-    public DateTime DataNascimento(DateTime dataNascimento) => _dataNascimento = dataNascimento;
-
-    public double Altura(double altura) => _altura = altura;
+    private int CalcularIdade()
+    {
+        return DateTime.Today.Year - _dataNascimento.Year;
+    }
+    public string ImprimirDados() 
+    {
+        return $"Seu nome completo é {_nome}, você nasceu em {_dataNascimento.ToString("dd/MM/yyyy")} ({CalcularIdade()} anos), e possui {_altura.ToString("#.##")} de altura!";
+    }
   }
 }
 
