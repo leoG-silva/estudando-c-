@@ -7,40 +7,92 @@ namespace estudando_c_
 {
   class Program
   {
-    private static Pessoa pessoa;
+    private static Elevador elevador;
     private static string nomeUsuario;
-                
+    private static int andarAtual;
+    private static int totalDeAndares;
+    private static int quantidadePessoasElevador;
+    private static int capacidadeMaxima;
     static void Main(string[] args)
-    {       
+    {
       Introducao();
-      Menu();       
-      ImprimirDados();
-    }  
+      ReterInformacoes();
+      Menu();
+    }
 
     static void Introducao()
     {
-      Console.WriteLine("Olá, seja bem vindo ao Exercício número 1!");
-      Console.WriteLine("Primeiramente, digite seu nome completo.");
-      nomeUsuario = Console.ReadLine();     
+      Console.WriteLine("Olá, seja bem-vindo ao Execício 2!");
+      Console.WriteLine("Primeiramente, qual seu nome?");
+      nomeUsuario = Console.ReadLine();
     }
 
+    static void ReterInformacoes()
+    {
+      Console.WriteLine($"Olá {nomeUsuario}, seja bem vindo");
+      Console.WriteLine("O Exercício trata-se de um exemplo de elevador");
+      Console.WriteLine("Informe a quantidade total de andares que o prédio possue.");
+      var totalDeAndares = Convert.ToInt32(Console.ReadLine());
+
+      Console.WriteLine("Agora informe a quantidade máxima de pessoas no elevador.");
+      var capacidadeMaxima = Convert.ToInt32(Console.ReadLine());
+      Console.Clear();
+
+      Console.WriteLine($"O elevador possue {totalDeAndares} andares, com capacidade máxima de {capacidadeMaxima} pessoas!");
+      Console.WriteLine("O elevador começa no térreo, sem pessoas no momento inicial - Aperto qualquer botão para continuar");
+      Console.ReadKey();
+    }
     static void Menu()
     {
-      
-      Console.WriteLine($"Olá {nomeUsuario}, digite agora as informações solicitadas.");
-      Console.WriteLine("Primeiro, digite a data do seu nascimento no formato DD/MM/AAAA. (EX: 05/05/1997)");
-      var dataNascimento = Convert.ToDateTime(Console.ReadLine());
-      Console.WriteLine("Agora digite a sua altura. (EX: 1.63)");
-      var altura = Convert.ToDouble(Console.ReadLine());
+      Console.WriteLine("Selecione uma das opções:");
+      Console.WriteLine("1 - Subir um andar");
+      Console.WriteLine("2 - Descer um andar");
+      Console.WriteLine("3 - Entrar uma pessoa no elevador");
+      Console.WriteLine("4 - Sair uma pessoa no elevador");
+      Console.WriteLine("5 - Finalizar programa!");
+      Console.WriteLine("6 - Empina e rebola? ...");
+      Console.WriteLine($"Você está no {andarAtual}° andar, com {quantidadePessoasElevador} de pessoa(s) no elevador");
+      int menuElevador = Convert.ToInt32(Console.ReadLine());
 
-      pessoa = new Pessoa(nomeUsuario, altura, dataNascimento);            
-    }
-        
-    static void ImprimirDados()
-    { 
-      Console.WriteLine(pessoa.ImprimirDados());
-      Console.WriteLine("Clique para finalizar o programa.");
+      switch (menuElevador)
+      {
+        case 1:
+          elevador.SubirAndar(andarAtual, totalDeAndares);
+          break;
+
+        case 2:
+          elevador.DescerAndar(andarAtual);
+          break;
+
+        case 3:
+          elevador.EntrarPessoa(quantidadePessoasElevador, capacidadeMaxima);
+          break;
+
+        case 4:
+          elevador.SairPessoa(quantidadePessoasElevador);
+          break;
+
+        case 5:
+          FinalizarPrograma();
+          break;
+
+        case 6:
+          elevador.EmpinarERebolar();
+          break;
+
+        default:
+          Console.Write("Você digitou nenhum dos parãmetros corretamente.");
+          Console.ReadKey();
+          break;
+      }
+
+      Menu();
+    }      
+    static void FinalizarPrograma()
+    {
+      Console.WriteLine("Aperte qualquer botão para finalizar o programa!");
       Console.ReadKey();
+      Environment.Exit(0);
     }
   }
 }
