@@ -7,15 +7,11 @@ namespace estudando_c_
   {
     private static Elevador elevador;
     private static string nomeUsuario;
-    private static int andarAtual;
-    private static int totalDeAndares;
-    private static int quantidadePessoasElevador;
-    private static int capacidadeMaxima;
+    
     static void Main(string[] args)
     
     {         
       Introducao();
-      elevador = new Elevador(totalDeAndares, andarAtual, capacidadeMaxima, quantidadePessoasElevador);
       ReterInformacoes();      
       Menu();
     }
@@ -38,6 +34,8 @@ namespace estudando_c_
       int capacidadeMaxima = Convert.ToInt32(Console.ReadLine());
       Console.Clear();
 
+      elevador = new Elevador(totalDeAndares, capacidadeMaxima);
+
       Console.WriteLine($"O elevador possue {totalDeAndares} andares, com capacidade máxima de {capacidadeMaxima} pessoas!");
       Console.WriteLine("O elevador começa no térreo, sem pessoas no momento inicial");
       Console.WriteLine("Aperte qualquer botão para continuar!");
@@ -53,35 +51,35 @@ namespace estudando_c_
       Console.WriteLine("4 - Sair uma pessoa no elevador");
       Console.WriteLine("5 - Finalizar programa!");
       Console.WriteLine("6 - Empina e rebola? ...");
-      Console.WriteLine($"Você está no {andarAtual}° andar, com {quantidadePessoasElevador} de pessoa(s) no elevador");
+      Console.WriteLine($"Você está no {elevador.AndarAtual}° andar, com {elevador.QuantidadePessoasElevador} de pessoa(s) no elevador");
       int menuElevador = Convert.ToInt32(Console.ReadLine());
 
       switch (menuElevador)
       {
         case 1:
-          elevador.SubirAndar(andarAtual, totalDeAndares);
+          elevador.SubirAndar();
           break;
-
+      
         case 2:
-          elevador.DescerAndar(andarAtual);
+          elevador.DescerAndar();
           break;
-
+        
         case 3:
-          elevador.EntrarPessoa(quantidadePessoasElevador, capacidadeMaxima);
+          elevador.EntrarPessoa();
           break;
-
+        
         case 4:
-          elevador.SairPessoa(quantidadePessoasElevador);
+          elevador.SairPessoa();
           break;
-
+        
         case 5:
           FinalizarPrograma();
           break;
-
+        
         case 6:
-          elevador.EmpinarERebolar();
+          Console.Write(elevador.EmpinarERebolar());
           break;
-
+        
         default:
           Console.Write("Você digitou nenhum dos parãmetros corretamente.");
           Console.ReadKey();
