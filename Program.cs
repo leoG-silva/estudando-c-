@@ -5,95 +5,96 @@ namespace estudando_c_
 {
   class Program
   {
-    private static Elevador elevador;
+    private static Televisao televisao;
+    private static ControleRemoto controleRemoto;
     private static string nomeUsuario;
+    private static int pacoteTelevisao;
     
-    static void Main(string[] args)
-    
-    {         
+    static void Main(string[] args)    
+    { 
       Introducao();
-      ReterInformacoes();      
-      Menu();
-    }
+      ReterInformacoes();
+      Menu();      
+    }    
 
     static void Introducao()
     {
-      Console.WriteLine("Olá, seja bem-vindo ao Execício 2!");
-      Console.WriteLine("Primeiramente, qual seu nome?");
+      Console.WriteLine("Seja bem-vindo ao exercício 3.");
+      Console.WriteLine("O exercício é um exemplo de iteração de uma televisão com um controle remoto.");
+      Console.WriteLine("Durante a execução do programa, você poderá: alterar o volume e o canal, como consultar ambas as informações.");  
+      Console.WriteLine("Para iniciar o programa, informe primeiramente o seu nome:");
       nomeUsuario = Console.ReadLine();
     }
 
     static void ReterInformacoes()
     {
-      Console.WriteLine($"Olá {nomeUsuario}, seja bem vindo");
-      Console.WriteLine("O Exercício trata-se de um exemplo de elevador");
-      Console.WriteLine("Informe a quantidade total de andares que o prédio possue. EX: 3");
-      int totalDeAndares = Convert.ToInt32(Console.ReadLine());
+       
+      Console.WriteLine($"Olá {nomeUsuario}, vamos iniciar?");
+      Console.WriteLine("Por padrão, sua TV é fabricada com uma variação de volume, de 0 (mudo) a 10 (volume máximo)");
+      Console.WriteLine("Já a quantidade de canais de sua televisão depende do plano contratado, sendo eles: Untitled Básico e Untitled Deluxe!");   
+      Console.WriteLine("O Untitled Básico possue 5 canais, enquanto o Untitled Deluxe possue incríveis 10 canais!");
+      Console.WriteLine("Poderia me informar qual seu plano de televisão? (Digite 1 para Untitled Basico e 2 para o Untitled Deluxe");
+      int pacoteTelevisao = Convert.ToInt32(Console.ReadLine());
 
-      Console.WriteLine("Agora informe a quantidade máxima de pessoas no elevador. EX: 5");
-      int capacidadeMaxima = Convert.ToInt32(Console.ReadLine());
-      Console.Clear();
-
-      elevador = new Elevador(totalDeAndares, capacidadeMaxima);
-
-      Console.WriteLine($"O elevador possue {totalDeAndares} andares, com capacidade máxima de {capacidadeMaxima} pessoas!");
-      Console.WriteLine("O elevador começa no térreo, sem pessoas no momento inicial");
-      Console.WriteLine("Aperte qualquer botão para continuar!");
-      Console.ReadKey();  
-    }    
-
-    static void Menu() 
-    {
-      Console.WriteLine("Selecione uma das opções:");
-      Console.WriteLine("1 - Subir um andar");
-      Console.WriteLine("2 - Descer um andar");
-      Console.WriteLine("3 - Entrar uma pessoa no elevador");
-      Console.WriteLine("4 - Sair uma pessoa no elevador");
-      Console.WriteLine("5 - Finalizar programa!");
-      Console.WriteLine("6 - Empina e rebola? ...");
-      Console.WriteLine($"Você está no {elevador.AndarAtual}° andar, com {elevador.QuantidadePessoasElevador} de pessoa(s) no elevador");
-      int menuElevador = Convert.ToInt32(Console.ReadLine());
-
-      switch (menuElevador)
+      if (pacoteTelevisao == 1)
       {
-        case 1:
-          elevador.SubirAndar();
-          break;
-      
-        case 2:
-          elevador.DescerAndar();
-          break;
-        
-        case 3:
-          elevador.EntrarPessoa();
-          break;
-        
-        case 4:
-          elevador.SairPessoa();
-          break;
-        
-        case 5:
-          FinalizarPrograma();
-          break;
-        
-        case 6:
-          Console.Write(elevador.EmpinarERebolar());
-          break;
-        
-        default:
-          Console.Write("Você digitou nenhum dos parãmetros corretamente.");
-          Console.ReadKey();
-          break;
+         quantidadeMaximaDeCanais = 5;
+      } 
+      else if (pacoteTelevisao == 2)
+      {
+         quantidadeMaximaDeCanais = 10;
       }
 
-      Menu();
+      int volumeMaximo = 10;
+
+      televisao = new Televisao(quantidadeMaximaDeCanais, volumeMaximo);  
+      contoleRemoto = new ContoleRemoto();
     }
-          
-    static void FinalizarPrograma()
+
+    static void Menu()
     {
-      Console.WriteLine("Aperte qualquer botão para finalizar o programa!");
-      Console.ReadKey();
-      Environment.Exit(0);
+      Console.WriteLine("Selecione uma das opções:");
+      Console.WriteLine("1 - Subir um canal");
+      Console.WriteLine("2 - Descer um canal");
+      Console.WriteLine("3 - Aumentar volume");
+      Console.WriteLine("4 - Diminuir volume");
+      Console.WriteLine("5 - Consultar informação atuais de volume de canal");
+      Console.WriteLine("6 - Desligar TV - (Fechar o programa");
+      int menuControleRemoto = Convert.ToInt32(Console.ReadLine());
+
+      switch (menuControleRemoto)
+      {
+        case 1:
+          controleRemoto.SubirCanal();
+           break;
+
+        case 2: 
+          controleRemoto.DescerCanal();
+          break;
+
+        case 3: 
+          controleRemoto.AumentarVolume();
+          break;
+
+        case 4: 
+          controleRemoto.DiminuirVolume();
+          break;
+
+        case 5: 
+          Console.WriteLine(controleRemoto.ConsultarInformacoes());
+          break;
+
+        case 6: 
+          controleRemoto.DesligarTelevisao();
+          break;
+
+        default: 
+          Console.Write("Você digitou nenhuma opção válida... Aperte qualquer botão para continuar.");
+          Console.ReadKey(); 
+          break;
+      }
+            
+     Menu();
     }
   }
 }
