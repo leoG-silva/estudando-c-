@@ -1,6 +1,4 @@
-﻿//1. Crie uma classe para representar uma pessoa, com os atributos privados de nome, data de nascimento e altura. Crie os métodos públicos para imprimir todos dados de uma pessoa e para calcular a idade da pessoa.
-
-using System;
+﻿using System;
 using estudando_c_.Modelo;
 
 namespace estudando_c_
@@ -14,9 +12,11 @@ namespace estudando_c_
     private static int quantidadePessoasElevador;
     private static int capacidadeMaxima;
     static void Main(string[] args)
-    {
+    
+    {         
       Introducao();
-      ReterInformacoes();
+      elevador = new Elevador(totalDeAndares, andarAtual, capacidadeMaxima, quantidadePessoasElevador);
+      ReterInformacoes();      
       Menu();
     }
 
@@ -31,18 +31,20 @@ namespace estudando_c_
     {
       Console.WriteLine($"Olá {nomeUsuario}, seja bem vindo");
       Console.WriteLine("O Exercício trata-se de um exemplo de elevador");
-      Console.WriteLine("Informe a quantidade total de andares que o prédio possue.");
-      var totalDeAndares = Convert.ToInt32(Console.ReadLine());
+      Console.WriteLine("Informe a quantidade total de andares que o prédio possue. EX: 3");
+      int totalDeAndares = Convert.ToInt32(Console.ReadLine());
 
-      Console.WriteLine("Agora informe a quantidade máxima de pessoas no elevador.");
-      var capacidadeMaxima = Convert.ToInt32(Console.ReadLine());
+      Console.WriteLine("Agora informe a quantidade máxima de pessoas no elevador. EX: 5");
+      int capacidadeMaxima = Convert.ToInt32(Console.ReadLine());
       Console.Clear();
 
       Console.WriteLine($"O elevador possue {totalDeAndares} andares, com capacidade máxima de {capacidadeMaxima} pessoas!");
-      Console.WriteLine("O elevador começa no térreo, sem pessoas no momento inicial - Aperto qualquer botão para continuar");
-      Console.ReadKey();
-    }
-    static void Menu()
+      Console.WriteLine("O elevador começa no térreo, sem pessoas no momento inicial");
+      Console.WriteLine("Aperte qualquer botão para continuar!");
+      Console.ReadKey();  
+    }    
+
+    static void Menu() 
     {
       Console.WriteLine("Selecione uma das opções:");
       Console.WriteLine("1 - Subir um andar");
@@ -87,7 +89,8 @@ namespace estudando_c_
       }
 
       Menu();
-    }      
+    }
+          
     static void FinalizarPrograma()
     {
       Console.WriteLine("Aperte qualquer botão para finalizar o programa!");
