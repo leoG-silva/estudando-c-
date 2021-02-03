@@ -7,8 +7,7 @@ namespace estudando_c_
   {
     private static Televisao televisao;
     private static ControleRemoto controleRemoto;
-    private static string nomeUsuario;
-    private static int pacoteTelevisao;
+    private static string nomeUsuario;    
     
     static void Main(string[] args)    
     { 
@@ -27,28 +26,28 @@ namespace estudando_c_
     }
 
     static void ReterInformacoes()
-    {
-       
+    {       
       Console.WriteLine($"Olá {nomeUsuario}, vamos iniciar?");
       Console.WriteLine("Por padrão, sua TV é fabricada com uma variação de volume, de 0 (mudo) a 10 (volume máximo)");
       Console.WriteLine("Já a quantidade de canais de sua televisão depende do plano contratado, sendo eles: Untitled Básico e Untitled Deluxe!");   
       Console.WriteLine("O Untitled Básico possue 5 canais, enquanto o Untitled Deluxe possue incríveis 10 canais!");
       Console.WriteLine("Poderia me informar qual seu plano de televisão? (Digite 1 para Untitled Basico e 2 para o Untitled Deluxe");
       int pacoteTelevisao = Convert.ToInt32(Console.ReadLine());
+      
+      int volumeMaximo = 10;
+      int quantidadeMaximaDeCanais = 0;
 
       if (pacoteTelevisao == 1)
       {
-         quantidadeMaximaDeCanais = 5;
+        quantidadeMaximaDeCanais = 5;
       } 
       else if (pacoteTelevisao == 2)
       {
          quantidadeMaximaDeCanais = 10;
-      }
-
-      int volumeMaximo = 10;
-
-      televisao = new Televisao(quantidadeMaximaDeCanais, volumeMaximo);  
-      contoleRemoto = new ContoleRemoto();
+      }           
+      
+      televisao = new Televisao(quantidadeMaximaDeCanais, volumeMaximo);   
+      controleRemoto = new ControleRemoto();
     }
 
     static void Menu()
