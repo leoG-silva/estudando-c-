@@ -7,11 +7,14 @@ namespace estudando_c_.Modelo
     {
         public Televisao televisao;
 
-        public ControleRemoto() {}
+        public ControleRemoto(Televisao televisao) 
+        {
+            this.televisao = televisao;
+        }
 
         public void SubirCanal()
         {
-            if (televisao.CanalAtual < 10)
+            if (televisao.CanalAtual < televisao.QuantidadeMaximaDeCanais)
             {
                 televisao.CanalAtual++;
                 Console.WriteLine("Você subiu um canal");
